@@ -10,14 +10,30 @@ exports.createPages = async ({ graphql, actions }) => {
   const CharacterStatic = path.resolve(`src/templates/CharacterStatic.js`)
 
   const data  = await graphql(`
-  query {
-    drupal {
-      taxonomyTermById (id: "1") {
-        ... on TaxonomyTermSection {
-            tid
+    query {
+      drupal {
+        taxonomyTermQuery (
+          filter: {
+            conditions: [
+              {
+                field: "vid",
+                operator: EQUAL,
+                value: "section"
+              }
+            ]
+          }, limit: 20
+        ) {
+          entities {
+            ... on Drupal_TaxonomyTermSection {
+              tid
+              path {
+                alias
+              }
+            }
+          }
         }
+      }
     }
-    }
-}
   `)
-  console.log(data);}
+  console.log(data);
+}
