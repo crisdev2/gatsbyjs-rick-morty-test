@@ -1,17 +1,19 @@
 import * as React from "react"
 import axios from "axios"
-import { Button, Card, CardActions, CardContent, CardMedia, Divider, Grid, Typography } from "@mui/material"
 import { Helmet } from "react-helmet"
+import { CardMedia } from "@mui/material"
 
-const CharacterStatic = ({ pageContext: { character } }) => {
+const CharacterStatic = ({ pageContext: { seccion, articulos } }) => {
 
-  console.log('crislogc', character)
+  // console.log('crislogc', character)
 
   return (
     <main>
 
+      {seccion?.entityLabel}
 
-      {character &&
+
+      {/* {character &&
       <>
         <Helmet>
           <meta charSet="utf-8" />
@@ -41,7 +43,7 @@ const CharacterStatic = ({ pageContext: { character } }) => {
           </CardActions>
         </Card>
       </>
-      }
+      } */}
     </main>
   )
 }
